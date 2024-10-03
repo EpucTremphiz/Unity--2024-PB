@@ -14,8 +14,8 @@ public class movehero : MonoBehaviour
             print("Could not find Animator Component");
         else
             print("Animator Component found");
-   
-    
+
+
     }
 
     // Update is called once per frame
@@ -29,14 +29,30 @@ public class movehero : MonoBehaviour
         }
 
         if (Input.GetKey(KeyCode.A))
-            transform.Rotate(Vector3.down, 50 * Time.deltaTime); 
+            transform.Rotate(Vector3.down, 150 * Time.deltaTime);
 
         if (Input.GetKey(KeyCode.S))
             transform.position += Vector3.back * Time.deltaTime;
 
-        if(Input.GetKey(KeyCode.D))
-            transform.Rotate(Vector3.up, 50 * Time.deltaTime);
+        if (Input.GetKey(KeyCode.D))
+            transform.Rotate(Vector3.up, 150 * Time.deltaTime);
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        print(collision.gameObject.name);
+
+
+        
+        FootballScript myFootball = collision.gameObject.GetComponent<FootballScript>();
+        if (myFootball != null)
+        {
+            myFootball.Kick();
+        }
+
+    }
+
+
+
 
 
 }
