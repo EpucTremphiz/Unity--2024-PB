@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class movehero : MonoBehaviour
 {
-    public GameObject snowBallCloneTemplate;
+   
+
+public GameObject snowBallCloneTemplate;
     Animator animator;
     float runningSpeed = 5f;
 
     Rigidbody rb;
-
-
 
 
 
@@ -51,10 +51,16 @@ public class movehero : MonoBehaviour
             transform.Rotate(Vector3.down, 150 * Time.deltaTime);
 
         if (Input.GetKey(KeyCode.S))
-            transform.position += Vector3.back * Time.deltaTime;
+        {
+            transform.position -= runningSpeed * transform.forward * Time.deltaTime;
+            animator.SetBool("is running", true);
+        }
 
         if (Input.GetKey(KeyCode.D))
             transform.Rotate(Vector3.up, 150 * Time.deltaTime);
+
+        
+
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -68,10 +74,7 @@ public class movehero : MonoBehaviour
             myFootball.Kick();
         }
 
+        
     }
-
-
-
-
 
 }
